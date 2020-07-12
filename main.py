@@ -4,12 +4,18 @@ from discord_connector import client, CHANNEL_ID
 from secrets import TOKEN
 import asyncio
 import discord
+import sys
+
+
+if len(sys.argv) != 3:
+    print("Usage: python main.py <TICKER> <TIME_FRAME>")
+    exit(1)
 
 
 starttime = time.time()
 interval = 60.0 * 15
-time_frame = "15m"
-ticker = "ES=F"
+ticker = sys.argv[1]
+time_frame = sys.argv[2]
 short_ma_period = 21
 long_ma_period = 34
 red = 0xFF0000
