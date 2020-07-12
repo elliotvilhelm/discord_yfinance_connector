@@ -1,9 +1,9 @@
 import os
 import discord
+import asyncio
 
 
-TOKEN = "DISCORD_TOKEN"
-CHANNEL_ID = 123
+CHANNEL_ID = 699745065118990356
 
 client = discord.Client()
 
@@ -13,9 +13,4 @@ async def on_ready():
     print(f'{client.user} has connected to Discord!')
 
 
-async def send_message(message):
-    channel = client.get_channel(CHANNEL_ID)
-    await channel.send(message)
 
-
-# client.run(TOKEN)
