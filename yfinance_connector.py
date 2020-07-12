@@ -21,8 +21,8 @@ def add_crossings(df, ma_1, ma_2):
     return df
 
 
-def get_prepped_df(ticker, short_ma_period, long_ma_period):
-    ohlc = get_ohlc(ticker)
+def get_prepped_df(ticker, short_ma_period, long_ma_period, interval="15m"):
+    ohlc = get_ohlc(ticker, interval=interval)
     ohlc = add_MA(ohlc, short_ma_period)
     ohlc = add_MA(ohlc, long_ma_period)
     ohlc = add_crossings(ohlc, f"MA_{short_ma_period}", f"MA_{long_ma_period}")
