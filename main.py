@@ -3,6 +3,7 @@ from yfinance_connector import get_prepped_df
 from discord_connector import client, CHANNEL_ID
 from secrets import TOKEN
 import asyncio
+import discord
 
 
 starttime = time.time()
@@ -21,8 +22,13 @@ async def stock_watch_job():
         try:
             ohlc = get_prepped_df(ticker, short_ma_period, long_ma_period)
             last_bar = ohlc.iloc[-1]
+
             channel = client.get_channel(CHANNEL_ID)
-            await channel.send(f'{ticker}\n{last_bar}')
+            em1 = discord.Embed(title="Downtrend", description=str(last_bar), colour=0xFF0000)
+            em2 = discord.Embed(title="Uptrend", description=str(last_bar), colour=0x008000)
+            # await channel.send(f'{ticker}\n{last_bar}')
+            await channel.send(embed=em1)
+            await channel.send(embed=em2)
             await asyncio.sleep(5)
 
             # if last_bar['Crossover'] is True:
