@@ -1,4 +1,5 @@
 import time
+from datetime import datetime
 from yfinance_connector import get_prepped_df
 from discord_connector import client, CHANNEL_ID
 from secrets import TOKEN
@@ -38,10 +39,12 @@ async def stock_watch_job():
                 trend = "Downtrend"
                 color = red
 
+            time = datetime.now().strftime("%I:%M %p")
             em1 = discord.Embed(title=f'${ticker}', colour=color)
             em1.add_field(name="Current Price", value=f"${last_bar['Close']}")
             em1.add_field(name="Time Frame", value=time_frame)
             em1.add_field(name="Trend", value=trend)
+            em1.add_field(name="Time", value=time)
 
             await channel.send(embed=em1)
             await asyncio.sleep(interval)
