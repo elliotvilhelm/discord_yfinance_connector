@@ -9,7 +9,7 @@ import discord
 starttime = time.time()
 interval = 60.0 * 15
 time_frame = "15m"
-ticker = "ES"
+ticker = "ES=F"
 short_ma_period = 21
 long_ma_period = 34
 red = 0xFF0000
@@ -38,7 +38,7 @@ async def stock_watch_job():
             em1.add_field(name="Trend", value=trend)
 
             await channel.send(embed=em1)
-            await asyncio.sleep(5)
+            await asyncio.sleep(interval)
 
             # if last_bar['Crossover'] is True:
             #     # Get AI Prediction
@@ -46,7 +46,7 @@ async def stock_watch_job():
 
         except Exception as e:
             print(str(e))
-            await asyncio.sleep(5)
+            await asyncio.sleep(interval)
 
 client.loop.create_task(stock_watch_job())
 client.run(TOKEN)
