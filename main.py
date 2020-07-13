@@ -41,7 +41,7 @@ async def stock_watch_job():
                 trend = "Downtrend"
                 color = red
 
-            if last_bar['Crossover'] is True:
+            if last_bar['Crossover']:
                 time = datetime.now().strftime("%I:%M %p") + " PT"
                 em1 = discord.Embed(title=f'${ticker}', description="https://www.theprofitgate.com", colour=color)
                 em1.add_field(name="Current Price", value=f"${last_bar['Close']}")
